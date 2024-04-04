@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<!-- My CSS -->
+    <link rel="stylesheet" href="project.css">
+
+	<title>Product</title>
+	<style>
+        /* Your CSS styles for the notification pop-up go here */
+        .notification-popup {
+            position: absolute;
+            top: 40px;
+            right: 20px;
+            width: 300px;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 999;
+        }
+
+        .notification-popup ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .notification-popup ul li {
+            padding: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+		/* Styles for the modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% 20%;
+            padding: 10px;
+            border: 1px solid #888;
+            width: 50%;
+        }
+
+        /* Close button style */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: red;
+            text-decoration: none;
+            cursor: pointer;
+        }#upload-form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-bottom: 20px;
+		}
+		        /* Form styles */
+				#upload-form {
+            display: inline-block;
+            text-align: left;
+            margin-bottom: 20px;
+            background-color: #fff; /* White background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+        }
+
+        #picture-input {
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        button {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc; /* Gray border */
+            border-radius: 5px; /* Rounded corners */
+            background-color: #fff; /* White background */
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+
+        button {
+            background-color: #3C91E6; /* Green button */
+            color: white; /* White text */
+            border: none; /* No border */
+            cursor: pointer; /* Cursor on hover */
+        }
+
+        button:hover {
+            background-color: #3C91E6; /* Darker green on hover */
+        }
+
+        /* Picture container styles */
+        #picture-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 0 auto;
+            max-width: 600px;
+        }
+
+        .picture-item {
+            margin: 10px;
+            border: 1px solid #ccc; /* Gray border */
+            border-radius: 5px; /* Rounded corners */
+            background-color: #fff; /* White background */
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+        }
+
+        .picture-item img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .picture-item .description {
+            margin-top: 5px;
+        }
+
+        .picture-item .price {
+            margin-top: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="M-Y-B.html" class="brand">
+			<i class='bx bx-meteor'></i>
+			<span class="text">M-Y-B</span>
+		</a>
+		<ul class="side-menu top">
+			<li class="active">
+				<a href="index.html">
+					<i class='bx bxs-dashboard' style="color: #342E37;"></i>
+					<span class="text" style="color: #342E37;">Dashboard</span>
+				</a>
+			</li>
+			<li>
+				<a href="project2.html">
+					<i class='bx bxs-shopping-bag-alt'style="color: #3C91E6;" ></i>
+	
+    <span class="text" style="color: #3C91E6;">Product</span>
+				</a>
+			</li>
+			<li>
+				<a href="analyse.html">
+					<i class='bx bxs-doughnut-chart' ></i>
+					<span class="text">Analytics</span>
+				</a>
+			</li>
+			<li>
+				<a href="reviuse.html">
+					<i class='bx bxs-star-half'></i>
+					<span class="text">Reviews</span>
+				</a>
+			</li>
+			<li>
+				<a href="team.html">
+					<i class='bx bxs-group' ></i>
+					<span class="text">Team / statement</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="side-menu">
+			<li>
+				<a href="login.html" class="logout">
+					<i class='bx bxs-log-out-circle' ></i>
+					<span class="text">Logout</span>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
+
+
+
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu' ></i>
+			<form action="#">
+				<div class="form-input">
+					<input type="search" placeholder="Search products...">
+					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+				</div>
+			</form>
+			<input type="checkbox" id="switch-mode" hidden>
+			<a href="#" class="notification">
+				<i class='bx bxs-bell' ></i>
+				<span class="num">3</span>
+			</a>
+			<a href="profile.html" class="profile">
+				<img src="https://img.freepik.com/photos-gratuite/homme-boucle-large-sourire-montre-dents-parfaites-s-amuse-par-discussions-interessantes-cheveux-fonces-boucles-touffus-interieur-contre-mur-blanc-blanc_273609-17092.jpg?t=st=1712070703~exp=1712074303~hmac=ea7221af7c6eb17656a2e057d20c53bfab9d06e712ffc4560c9467db85a61d7d&w=1060">
+			</a>
+		</nav>
+		<!-- NAVBAR -->
+
+		<!-- MAIN -->
+		<main>
+			<div class="head-title">
+				<div class="left">
+					<h1>Product Prix </h1>
+					<ul class="breadcrumb">
+						<li>
+							<a href="#">Product</a>
+						</li>
+						<li><i class='bx bx-chevron-right' ></i></li>
+						<li>
+							<a class="active" href="#">Prix</a>
+						</li>
+					</ul>
+				</div>
+				<a href="#" id="add-product-button" class="btn-download">
+					<i class='bx bx-plus' ></i>
+					<span class="text">Add New Product</span>
+				</a>
+			</div>
+			<div id="myModal" class="modal">
+				<div class="modal-content" style="
+				font-family: Arial, sans-serif;
+				max-width: 800px;
+				margin: 0 auto;
+				text-align: center;
+				padding: 20px;
+				background-color: #f0f4f7; /* Light gray background */">
+					<span class="close">&times;</span>
+					<h1>Add New Product</h1>
+					<form id="upload-form">
+						<input type="file" id="picture-input" accept="image/*" required>
+						<label for="picture-input">Select a picture to upload</label>
+						<input type="text" id="description-input" placeholder="Enter a description" required>
+						<label for="description-input">Description</label>
+						<input type="number" id="price-input" min="0" placeholder="Enter a price" required>
+						<label for="price-input">Price</label>
+						<button type="submit">Upload</button>
+					</form>
+					<div id="picture-container"></div>
+				</div>
+			</div>
+            <div id="editModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h1>Edit Product</h1>
+                <form id="edit-form">
+                    <input type="text" id="edit-description-input" placeholder="Enter a description" required>
+                    <input type="number" id="edit-price-input" min="0" placeholder="Enter a price" required>
+                    <button type="submit">Save</button>
+                </form>
+            </div>
+        </div>
+            <div class="heading">
+                <h1>Products Prices</h1>
+
+
+
+				
+            </div>
+            <div class="container">
+                <div class="box">
+                    <img src="imgs/laptop.jpg">
+                    <h2>laptop</h2>
+                    <p>"Experience unparalleled performance, sleek design, and seamless integration with the MacBook, your ultimate companion for productivity and creativity."
+						.</p>
+                    <span>$1500</span>
+                    
+                    
+                    <div class="options">
+                        <a href="#">Edit</a>
+                        <a href="#">Delete</a>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src="imgs/tablet.jpg">
+                    <h2>tablet</h2>
+                    <p>"Elevate your digital experience with the iPad, boasting stunning visuals, powerful performance, and versatile functionality for work, play, and creativity."
+						.</p>
+                    <span>$1100</span>
+                    
+                    <div class="options">
+                        <a href="#">Edit</a>
+                        <a href="#">Delete</a>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src="imgs/mobile.jpg">
+                    <h2>mobile</h2>
+                    <p>"Stay connected and empowered with the iPhone, featuring cutting-edge technology, exceptional camera capabilities, and seamless performance in a stylish and intuitive design."
+						.</p>
+                    <span>$1000</span>
+                   
+                    <div class="options">
+                        <a href="#">Edit</a>
+                        <a href="#">Delete</a>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src="imgs/camera.jpg">
+                    <h2>camera</h2>
+                    <p>"Capture life's moments with clarity and precision using Canon's innovative cameras and lenses, trusted by photographers worldwide for their exceptional quality and reliability."
+						.</p>
+                    <span>$1200</span>
+                   
+                    <div class="options">
+                        <a href="#">Edit</a>
+                        <a href="#">Delete</a>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src=imgs/watch.jpg>
+                    <h2>watch</h2>
+                    <p>"Enhance your lifestyle and stay connected on the go with the Apple Watch, offering advanced fitness tracking, seamless integration with your iPhone, and stylish design that complements any outfit."
+					</p>
+                    <span>$750</span>
+                    
+                    <div class="options">
+                        <a href="#">Edit</a>
+                        <a href="#">Delete</a>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src="imgs/airpods.jpg">
+                    <h2>airpods</h2>
+                    <p>"Immerse yourself in superior sound quality and seamless connectivity with AirPods Pro, featuring active noise cancellation, customizable fit, and intuitive controls for an unparalleled listening experience."
+					</p>
+                    <span>$350</span>
+                    
+                    <div class="options">
+                        <a href="#">Edit</a>
+                        <a href="#">Delete</a>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src="imgs/headphone.jpg">
+                    <h2>headphone</h2>
+                    <p>"Experience premium audio quality and comfort with Headphones Pro, offering immersive sound, noise isolation, and ergonomic design for hours of enjoyable listening."
+                	.</p>
+                    <span>$250</span>
+                   
+                    <div class="options">
+                        <a href="#">Edit</a>
+                        <a href="#">Delete</a>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src="imgs/games.jpg">
+                    <h2>controller</h2>
+                    <p>"Take your gaming to the next level with the PS4 controller, featuring responsive controls, ergonomic design, and innovative features for an immersive gaming experience."
+						.</p>
+                    <span>$70</span>
+                    
+                    <div class="options">
+                        <a href="#">Edit</a>
+                        <a href="#">Delete</a>
+                    </div>
+                </div>
+            </div>
+		</main>
+		<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+	    <!-- NOTIFICATION POPUP -->
+		<div class="notification-popup" id="notificationPopup">
+			<ul>
+				<li>New stock of your favorite product</li>
+				<li>Enjoy 20% off on all purchases this weekend only. </li>
+				<li>Hurry! Flash sale happening now! </li>
+				<!-- Add more notifications as needed -->
+			</ul>
+		</div>
+		<!-- NOTIFICATION POPUP -->
+	
+	
+		<script src="script.js"></script>
+		<script>
+			// JavaScript to show/hide the notification pop-up
+			document.querySelector('.notification').addEventListener('click', function () {
+				var popup = document.getElementById('notificationPopup');
+				popup.style.display = (popup.style.display === 'block') ? 'none' : 'block';
+			});
+		</script>
+		<!-- Script to toggle modal display -->
+		<script>
+			// Get the modal
+			var modal = document.getElementById("myModal");
+	
+			// Get the button that opens the modal
+			var btn = document.getElementById("add-product-button");
+	
+			// Get the <span> element that closes the modal
+			var span = document.getElementsByClassName("close")[0];
+	
+			// When the user clicks on the button, open the modal
+			btn.onclick = function() {
+				modal.style.display = "block";
+			}
+	
+			// When the user clicks on <span> (x), close the modal
+			span.onclick = function() {
+				modal.style.display = "none";
+			}
+	
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function(event) {
+				if (event.target == modal) {
+					modal.style.display = "none";
+				}
+			}
+		</script>
+		<script>
+        const uploadForm = document.getElementById('upload-form');
+        const pictureInput = document.getElementById('picture-input');
+        const pictureContainer = document.getElementById('picture-container');
+
+        uploadForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const pictureFile = pictureInput.files[0];
+            const description = document.getElementById('description-input').value;
+            const price = document.getElementById('price-input').value;
+
+            const reader = new FileReader();
+            reader.readAsDataURL(pictureFile);
+
+            reader.onload = () => {
+                const pictureUrl = reader.result;
+
+                const pictureItem = document.createElement('div');
+                pictureItem.classList.add('picture-item');
+
+                const pictureElement = document.createElement('img');
+                pictureElement.src = pictureUrl;
+                pictureItem.appendChild(pictureElement);
+
+                const descriptionElement = document.createElement('p');
+                descriptionElement.classList.add('description');
+                descriptionElement.textContent = description;
+                pictureItem.appendChild(descriptionElement);
+
+                const priceElement = document.createElement('p');
+                priceElement.classList.add('price');
+                priceElement.textContent = `$${price}`;
+                pictureItem.appendChild(priceElement);
+
+                pictureContainer.appendChild(pictureItem);
+
+                // Reset the form
+                uploadForm.reset();
+            }
+        });
+    </script>
+	<script src="script.js"></script>
+</body>
+</html>
